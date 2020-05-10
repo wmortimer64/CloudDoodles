@@ -1,0 +1,23 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "A multiplayer drawing tool to show things to your friends!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmortimer64/CloudDoodles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wmortimer64/CloudDoodles/issues"
+  },
+  "homepage": "https://github.com/wmortimer64/CloudDoodles#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0",
+    "socketio": "^1.0.0"
+  }
+}
