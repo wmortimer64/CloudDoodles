@@ -27,8 +27,8 @@ function mouseMoveHandler(e) {
 	b=e.buttons;
 }
 function line(x1,y1,x2,y2) {
-	ctx.moveTo(prex,prey);
-	ctx.lineTo(x,y);
+	ctx.moveTo(x1,y1);
+	ctx.lineTo(x2,y2);
 	ctx.stroke();
 }
 socket.on('draw',function(data){
