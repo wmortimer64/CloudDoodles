@@ -4,8 +4,6 @@
 		<script>
 document.addEventListener("mousemove",mouseMoveHandler,false);
 document.addEventListener("keydown",(e)=>{if(e.key=="c") {ctx.beginPath();ctx.rect(-1,-1,1282,722);ctx.fillStyle="white";ctx.fill();}});
-document.addEventListener("mousemove",mouseMoveHandler,false);
-document.addEventListener("keydown",(e)=>{if(e.key=="c") {ctx.beginPath();ctx.rect(-1,-1,1282,722);ctx.fillStyle="white";ctx.fill();}});
 var c = document.getElementById("can")
 var ctx = c.getContext("2d");
 var x = 0;
@@ -22,8 +20,9 @@ function update() {
 	prey = y;
 }
 function mouseMoveHandler(e) {
-	x=e.clientX;
-	y=e.clientY;
+	var rect=c.getBoundingClientRect();
+	x=e.clientX-rect.left;
+	y=e.clientY-rect.top;
 	b=e.buttons;
 }
 function line(x1,y1,x2,y2) {
