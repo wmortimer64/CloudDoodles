@@ -1,6 +1,6 @@
 <html><body><script src="https://cdn.socket.io/socket.io-1.4.5.js"></script><script>
 			var socket = io();</script>
-<form><input id="room" value="type which room to join"></form>
+<form><input id="room" value="global"></form>
 <canvas id="can" width="1280" height="720" style="border:1px solid #BBBBBB;background:#ffffff;"></canvas>
 		<script>
 document.addEventListener("mousemove",mouseMoveHandler,false);
@@ -33,7 +33,7 @@ function line(x1,y1,x2,y2) {
 	ctx.stroke();
 }
 socket.on('draw',function(data){
-	if(data.room==typer.value && data.room != "type which room to join") {
+	if(data.room==typer.value) {
 		line(data.x1,data.y1,data.x2,data.y2);
 	}
 });
