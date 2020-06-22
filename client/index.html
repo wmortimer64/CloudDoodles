@@ -1,6 +1,7 @@
 <html><body><script src="https://cdn.socket.io/socket.io-1.4.5.js"></script><script>
 			var socket = io();</script>
 <form><input id="room" value="global"></form>
+<form><input id="thickness" value="2"></form>
 <canvas id="can" width="1280" height="720" style="border:1px solid #BBBBBB;background:#ffffff;"></canvas>
 		<script>
 document.addEventListener("mousemove",mouseMoveHandler,false);
@@ -13,10 +14,11 @@ var b = 0;
 var prex = 0;
 var prey = 0;
 var typer = document.getElementById("room");
+var thicc = document.getElementById("thickness");
 setInterval(update,10);
 function update() {
 	if (b!=0) {
-		socket.emit('line',{x1:x,x2:prex,y1:y,y2:prey,room:typer.value});
+		socket.emit('line',{x1:x,x2:prex,y1:y,y2:prey,room:typer.value,thickness:thicc.value});
 	}
 	prex = x;
 	prey = y;
@@ -34,6 +36,7 @@ function line(x1,y1,x2,y2) {
 }
 socket.on('draw',function(data){
 	if(data.room==typer.value) {
+		ctx.lineWidth = data.thicc;
 		line(data.x1,data.y1,data.x2,data.y2);
 	}
 });
