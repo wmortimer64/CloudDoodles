@@ -30,6 +30,8 @@ var y = 0;
 var b = 0;
 var prex = 0;
 var prey = 0;
+var currLineWidth;
+/** @type {HTMLInputElement} */
 var typer = document.getElementById('room');
 var thick = document.getElementById('thickness');
 
@@ -56,15 +58,17 @@ function mouseMoveHandler(e) {
     b = e.buttons;
 }
 function line(x1, y1, x2, y2) {
+    ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
+    ctx.lineWidth = currLineWidth;
     ctx.stroke();
 
     ctx.fill();
 }
 socket.on('draw', function (data) {
     if (data.room == typer.value) {
-        ctx.lineWidth = data.thickness;
+        currLineWidth = data.thickness;
         line(data.x1, data.y1, data.x2, data.y2);
     }
 });

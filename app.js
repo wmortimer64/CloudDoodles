@@ -7,7 +7,6 @@ const io = require('socket.io')(serv, {});
  * Socket IO
  */
 io.sockets.on('connection', function (socket) {
-    console.log('connection');
     socket.on('line', function (data) {
         sendall(data);
     });
