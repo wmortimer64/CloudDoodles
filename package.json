@@ -2,9 +2,9 @@
   "name": "express",
   "version": "1.0.0",
   "description": "A multiplayer drawing tool to show things to your friends!",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ."
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "dependencies": {
     "socket.io": "^2.3.0",
     "socketio": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

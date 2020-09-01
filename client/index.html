@@ -1,46 +1,23 @@
-<html><body><script src="https://cdn.socket.io/socket.io-1.4.5.js"></script><script>
-			var socket = io();</script>
-<form><input id="room" value="global" style="float:left;"></form>
-<form><input id="thickness" value="2"></form>
-<canvas id="can" width="1280" height="720" style="border:1px solid #BBBBBB;background:#ffffff;"></canvas>
-		<script>
-document.addEventListener("mousemove",mouseMoveHandler,false);
-document.addEventListener("keydown",(e)=>{if(e.key=="c") {ctx.beginPath();ctx.rect(-1,-1,1282,722);ctx.fillStyle="white";ctx.fill();}});
-var c = document.getElementById("can")
-var ctx = c.getContext("2d");
-var x = 0;
-var y = 0;
-var b = 0;
-var prex = 0;
-var prey = 0;
-var typer = document.getElementById("room");
-var thicc = document.getElementById("thickness");
-setInterval(update,10);
-function update() {
-	ctx.lineCap = "round";
-	if (b!=0) {
-		socket.emit('line',{x1:x,x2:prex,y1:y,y2:prey,room:typer.value,thickness:thicc.value});
-	}
-	prex = x;
-	prey = y;
-}
-function mouseMoveHandler(e) {
-	var rect=c.getBoundingClientRect();
-	x=e.clientX-rect.left;
-	y=e.clientY-rect.top;
-	b=e.buttons;
-}
-function line(x1,y1,x2,y2) {
-	ctx.moveTo(x1,y1);
-	ctx.lineTo(x2,y2);
-	ctx.stroke();
-
-	ctx.fill();
-}
-socket.on('draw',function(data){
-	if(data.room==typer.value) {
-		ctx.lineWidth = data.thickness;
-		line(data.x1,data.y1,data.x2,data.y2);
-	}
-});
-</script><p>Use mouse to draw<br>c to clear</p></script></body></html>
+<html>
+    <head>
+        <title>Cloud Doodler</title>
+        <link rel="stylesheet" href="/client/styles/main.css" />
+    </head>
+    <body>
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <h1 id="title">Cloud Doodle</h1>
+        <div id="controls">
+            <span>
+                <label for="room">Drawing Room/Channel</label>
+                <input id="room" type="text" value="global" style="float: left" />
+            </span>
+            <span>
+                <label for="thickness">Brush Thickness</label>
+                <input id="thickness" type="number" min="0" value="2" />
+            </span>
+        </div>
+        <canvas width=640 height=480 id="can"></canvas>
+        <p>Use mouse to draw<br />c to clear</p>
+        <script src="/client/main.js"></script>
+    </body>
+</html>
