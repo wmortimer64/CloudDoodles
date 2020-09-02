@@ -8,12 +8,19 @@ const io = require('socket.io')(serv, {});
  */
 io.sockets.on('connection', function (socket) {
     socket.on('line', function (data) {
-        sendall(data);
+        sendline(data);
+    });
+    socket.on('clear', function (data) {
+        sendline(data);
     });
 });
 
-function sendall(data) {
+function sendline(data) {
     io.emit('draw', data);
+}
+
+function sendclear(data) {
+    io.emit('clear', data);
 }
 
 /**
