@@ -72,3 +72,11 @@ socket.on('draw', function (data) {
         line(data.x1, data.y1, data.x2, data.y2);
     }
 });
+socket.on('clear', 
+    ctx.beginPath();
+    ctx.fillStyle = 'white';
+    // replaced .rect() & .fill with .filLRect to save space
+    // Replaced the static coded width and height with the context's
+    // built in width and height variables.
+    ctx.fillRect(0, 0, c.width, c.height);
+);
